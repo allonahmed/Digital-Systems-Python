@@ -1,8 +1,4 @@
-from random import randrange
-from flask import Flask
 import pandas as pd
-
-app = Flask(__name__)
 
 
 class Questions:
@@ -16,8 +12,13 @@ class Questions:
         if(qid):  # priority 1, if qid exists, return the column with the qid
             # returns true if qid row corresponds with qid parameter, false otherwise
             filtered_data = self.questions['qid'] == qid
+            # columns we want to return
             # returns the row of matching qid
-            return self.questions[filtered_data]
+            data = self.questions[filtered_data]
+            if (data.size == 0):
+                return {}
+            else:
+                return data.to_dict(orient='records')[0]
         else:
             # returns true if category matches inputed category
             filtered_data = self.questions['category'] == category
@@ -29,25 +30,29 @@ class Questions:
                 filtered_rows = filtered_rows[filtered_data].dropna(
                     how='all')  # returns the rows
             # columns we want to return
-            columns_selected = ['qid', 'category', 'level']
+            # columns_selected = ['qid', 'category', 'level']
             # astype to cast from float to int
-            data = filtered_rows[columns_selected]
+            data = filtered_rows
 
-            return data.sample()  # return a random row from the dataframe
+            if (data.size == 0):
+                return {}
+            else:
+                # return a random row from the dataframe
+                return data.sample().to_dict(orient='records')[0]
 
 
 questions = Questions('/', 'questions.csv')
 
 print(questions.questions, '\n\n')
 
-q = questions.get().to_dict(orient='record')[0]
+q = questions.get()
 print(q, '\n\n')
 
-q = questions.get(category=2).to_dict(orient='record')[0]
+q = questions.get(category=2)
 print(q, '\n\n')
 
-q = questions.get(category=1, level=3).to_dict(orient='record')[0]
+q = questions.get(category=7, level=3)
 print(q, '\n\n')
 
-q = questions.get(qid=10).to_dict(orient='record')[0]
+q = questions.get(qid=10)
 print(q, '\n\n')
