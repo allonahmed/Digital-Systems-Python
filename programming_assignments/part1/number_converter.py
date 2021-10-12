@@ -169,9 +169,9 @@ class NumberConverter:
         elif self.row['description'] == 'oct' and self.row['todo'] == 'hex': #oct to hexadecimal
             return self.octal_to_hex(problem)
         elif self.row['description'] == 'tcomp' and self.row['todo'] == 'dec': #tcomp to decimal
-            return self.twos_comp_to_dec('1001')
+            return self.twos_comp_to_dec(problem)
         elif self.row['description'] == 'dec' and self.row['todo'] == 'tcomp': #decimal to decimal
-            return self.decimal_to_twos_comp('-2')
+            return self.decimal_to_twos_comp(problem)
 
 
 
