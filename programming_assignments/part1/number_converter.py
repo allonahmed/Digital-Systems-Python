@@ -110,9 +110,6 @@ class NumberConverter:
             if((int(bin[i])) + carry == 2):
                 carry = 1
                 sum += '0'
-            elif((int(bin[i])) + carry == 3):
-                carry = 1
-                sum+= '1'
             elif((int(bin[i])) + carry == 1):
                 carry = 0
                 sum +='1'
@@ -135,7 +132,6 @@ class NumberConverter:
     def decimal_to_twos_comp(self, decimal):
         if (decimal[0] == '-'):
             bits = self.to_pad(self.decimal_to(decimal[1:len(decimal)],2))
-            print('bits', bits)
             flipped = self.flipped_bits(bits)
             added = self.add_one(flipped)
             return added
