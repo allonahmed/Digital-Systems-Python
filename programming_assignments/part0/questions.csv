@@ -35,3 +35,8 @@ qid,category,level,problem,description,todo
 34,2,1,tbd1,NA,NA
 35,2,1,tbd2,NA,NA
 36,2,1,tdb3,NA,NA
+37,2,2,tdb3,NA,NA
+38,2,2,not(A or B),"A=0,B=1",NA
+39,2,2,C and (A or B),"A=0,B=1,C=1",NA
+40,1,1,1011,tcomp,NA
+41,1,1,-3,dec,tcomp

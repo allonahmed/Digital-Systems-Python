@@ -1,11 +1,12 @@
 import pandas as pd
+import os
 
 
 class Questions:
     def __init__(self, location, filename):
         self.loc = location
         self.filen = filename
-        file_data = pd.read_csv(filename)  # creates dataframe
+        file_data = pd.read_csv(location + '/' + filename)  # creates dataframe
         self.questions = file_data
 
     def get(self, category=1, level=None, qid=None):
@@ -34,3 +35,10 @@ class Questions:
             else:
                 # return a random row from the dataframe
                 return data.sample().to_dict(orient='records')[0]
+
+
+# questions = Questions(location='', filename='questions.csv')
+
+# # Example A: random question from default category 1
+# q = questions.get()
+# print(q) 
